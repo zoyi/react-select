@@ -753,7 +753,7 @@ const Select = React.createClass({
     if (this.props.inputRenderer) {
       return this.props.inputRenderer();
     } else {
-      var className = classNames(this.props.inputClassName, 'Select-input')
+      var className = classNames('Select-input', this.props.inputClassName)
       const isOpen = !!this.state.isOpen;
 
       const ariaOwns = classNames({
@@ -983,7 +983,7 @@ const Select = React.createClass({
     }
 
     return (
-      <div ref="menuContainer" className={classNames(this.props.outerClassName, "Select-menu-outer")} style={this.props.menuContainerStyle}>
+      <div ref="menuContainer" className={classNames("Select-menu-outer", this.props.outerClassName)} style={this.props.menuContainerStyle}>
         <div ref="menu" role="listbox" className="Select-menu" id={this._instancePrefix + '-list'}
              style={this.props.menuStyle}
              onScroll={this.handleMenuScroll}
@@ -1011,7 +1011,7 @@ const Select = React.createClass({
     } else {
       focusedOption = this._focusedOption = null;
     }
-    let className = classNames(this.props.className, 'Select', {
+    let className = classNames('Select', this.props.className, {
       'Select--multi': this.props.multi,
       'Select--single': !this.props.multi,
       'is-disabled': this.props.disabled,
@@ -1041,7 +1041,7 @@ const Select = React.createClass({
            style={this.props.wrapperStyle}>
         {this.renderHiddenField(valueArray)}
         <div ref="control"
-             className={classNames(this.props.controlClassName, 'Select-control')}
+             className={classNames('Select-control', this.props.controlClassName)}
              style={this.props.style}
              onKeyDown={this.handleKeyDown}
              onMouseDown={() => {'handleMouseDown disabled'}}
