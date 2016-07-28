@@ -1128,7 +1128,7 @@ var Select = _react2['default'].createClass({
     } else {
       var _classNames;
 
-      var className = (0, _classnames2['default'])('Select-input', this.props.inputClassName);
+      var className = (0, _classnames2['default'])(this.props.inputClassName, 'Select-input');
       var isOpen = !!this.state.isOpen;
 
       var ariaOwns = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, this._instancePrefix + '-list', isOpen), _defineProperty(_classNames, this._instancePrefix + '-backspace-remove-message', this.props.multi && !this.props.disabled && this.state.isFocused && !this.state.inputValue), _classNames));
@@ -1360,7 +1360,7 @@ var Select = _react2['default'].createClass({
 
     return _react2['default'].createElement(
       'div',
-      { ref: 'menuContainer', className: (0, _classnames2['default'])("Select-menu-outer", this.props.outerClassName), style: this.props.menuContainerStyle },
+      { ref: 'menuContainer', className: (0, _classnames2['default'])(this.props.outerClassName, "Select-menu-outer"), style: this.props.menuContainerStyle },
       _react2['default'].createElement(
         'div',
         { ref: 'menu', role: 'listbox', className: 'Select-menu', id: this._instancePrefix + '-list',
@@ -1389,7 +1389,7 @@ var Select = _react2['default'].createClass({
     } else {
       focusedOption = this._focusedOption = null;
     }
-    var className = (0, _classnames2['default'])('Select', this.props.className, {
+    var className = (0, _classnames2['default'])(this.props.className, 'Select', {
       'Select--multi': this.props.multi,
       'Select--single': !this.props.multi,
       'is-disabled': this.props.disabled,
@@ -1419,7 +1419,7 @@ var Select = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { ref: 'control',
-          className: (0, _classnames2['default'])('Select-control', this.props.controlClassName),
+          className: (0, _classnames2['default'])(this.props.controlClassName, 'Select-control'),
           style: this.props.style,
           onKeyDown: this.handleKeyDown,
           onMouseDown: function () {
