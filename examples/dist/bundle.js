@@ -562,7 +562,7 @@ var Select = _react2['default'].createClass({
       allowCreate: false,
       backspaceRemoves: true,
       backspaceToRemoveMessage: 'Press backspace to remove {label}',
-      clearable: true,
+      clearable: false,
       clearAllText: 'Clear all',
       clearValueText: 'Clear value',
       constantOpen: false,
