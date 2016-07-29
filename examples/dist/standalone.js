@@ -1201,11 +1201,9 @@ var Select = _react2['default'].createClass({
   },
 
   renderArrow: function renderArrow() {
-    var _classNames2;
-
     return _react2['default'].createElement(
       'span',
-      { className: (0, _classnames2['default'])((_classNames2 = {}, _defineProperty(_classNames2, Select - arrow - zone, true), _defineProperty(_classNames2, arrow - hide, !this.props.showArrow), _classNames2)), onMouseDown: this.handleMouseDown },
+      { className: (0, _classnames2['default'])('Select-arrow-zone', { 'arrow-hide': !this.props.showArrow }), onMouseDown: this.handleMouseDown },
       _react2['default'].createElement('span', { className: 'Select-arrow', onMouseDown: this.handleMouseDown })
     );
   },

@@ -834,9 +834,9 @@ const Select = React.createClass({
 
   renderArrow () {
     return (
-      <span className={classNames({[Select-arrow-zone]: true, [arrow-hide]: !this.props.showArrow})} onMouseDown={this.handleMouseDown}>
-                <span className="Select-arrow" onMouseDown={this.handleMouseDown}/>
-            </span>
+      <span className={classNames('Select-arrow-zone', {'arrow-hide': !this.props.showArrow})} onMouseDown={this.handleMouseDown}>
+        <span className="Select-arrow" onMouseDown={this.handleMouseDown}/>
+      </span>
     );
   },
 
