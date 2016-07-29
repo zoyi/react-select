@@ -424,6 +424,7 @@ var Select = _react2['default'].createClass({
     resetValue: _react2['default'].PropTypes.any, // value to use when you clear the control
     scrollMenuIntoView: _react2['default'].PropTypes.bool, // boolean to enable the viewport to shift so that the full menu fully visible when engaged
     searchable: _react2['default'].PropTypes.bool, // whether to enable searching feature or not
+    showArrow: _react2['default'].PropTypes.bool, // whether to show an arrow or not
     simpleValue: _react2['default'].PropTypes.bool, // pass the value to onChange as a simple value (legacy pre 1.0 mode), defaults to false
     style: _react2['default'].PropTypes.object, // optional style to apply to the control
     tabIndex: _react2['default'].PropTypes.string, // optional tab index of the control
@@ -476,6 +477,7 @@ var Select = _react2['default'].createClass({
       resetValue: null,
       scrollMenuIntoView: true,
       searchable: false,
+      showArrow: false,
       simpleValue: false,
       tabSelectsValue: true,
       valueComponent: _Value2['default'],
@@ -1199,9 +1201,11 @@ var Select = _react2['default'].createClass({
   },
 
   renderArrow: function renderArrow() {
+    var _classNames2;
+
     return _react2['default'].createElement(
       'span',
-      { className: 'Select-arrow-zone', onMouseDown: this.handleMouseDown },
+      { className: (0, _classnames2['default'])((_classNames2 = {}, _defineProperty(_classNames2, Select - arrow - zone, true), _defineProperty(_classNames2, arrow - hide, !this.props.showArrow), _classNames2)), onMouseDown: this.handleMouseDown },
       _react2['default'].createElement('span', { className: 'Select-arrow', onMouseDown: this.handleMouseDown })
     );
   },

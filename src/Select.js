@@ -90,6 +90,7 @@ const Select = React.createClass({
     resetValue: React.PropTypes.any,            // value to use when you clear the control
     scrollMenuIntoView: React.PropTypes.bool,   // boolean to enable the viewport to shift so that the full menu fully visible when engaged
     searchable: React.PropTypes.bool,           // whether to enable searching feature or not
+    showArrow: React.PropTypes.bool,            // whether to show an arrow or not
     simpleValue: React.PropTypes.bool,          // pass the value to onChange as a simple value (legacy pre 1.0 mode), defaults to false
     style: React.PropTypes.object,              // optional style to apply to the control
     tabIndex: React.PropTypes.string,           // optional tab index of the control
@@ -142,6 +143,7 @@ const Select = React.createClass({
       resetValue: null,
       scrollMenuIntoView: true,
       searchable: false,
+      showArrow: false,
       simpleValue: false,
       tabSelectsValue: true,
       valueComponent: Value,
@@ -832,7 +834,7 @@ const Select = React.createClass({
 
   renderArrow () {
     return (
-      <span className="Select-arrow-zone" onMouseDown={this.handleMouseDown}>
+      <span className={classNames({[Select-arrow-zone]: true, [arrow-hide]: !this.props.showArrow})} onMouseDown={this.handleMouseDown}>
                 <span className="Select-arrow" onMouseDown={this.handleMouseDown}/>
             </span>
     );
