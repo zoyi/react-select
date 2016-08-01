@@ -429,6 +429,7 @@ var Select = _react2['default'].createClass({
     style: _react2['default'].PropTypes.object, // optional style to apply to the control
     tabIndex: _react2['default'].PropTypes.string, // optional tab index of the control
     tabSelectsValue: _react2['default'].PropTypes.bool, // whether to treat tabbing out while focused to be value selection
+    topOffset: _react2['default'].PropTypes.number, // top offset when going to the selected option.
     value: _react2['default'].PropTypes.any, // initial field value
     valueComponent: _react2['default'].PropTypes.func, // value component to render
     valueKey: _react2['default'].PropTypes.string, // path of the label value in option objects
@@ -480,6 +481,7 @@ var Select = _react2['default'].createClass({
       showArrow: false,
       simpleValue: false,
       tabSelectsValue: true,
+      topOffset: 10,
       valueComponent: _Value2['default'],
       valueKey: 'value'
     };
@@ -535,7 +537,7 @@ var Select = _react2['default'].createClass({
     if (this.refs.menu && this.refs.focused && this.state.isOpen && !this.hasScrolledToOption) {
       var focusedOptionNode = _reactDom2['default'].findDOMNode(this.refs.focused);
       var menuNode = _reactDom2['default'].findDOMNode(this.refs.menu);
-      menuNode.scrollTop = focusedOptionNode.offsetTop;
+      menuNode.scrollTop = focusedOptionNode.offsetTop - this.props.topOffset;
       this.hasScrolledToOption = true;
     } else if (!this.state.isOpen) {
       this.hasScrolledToOption = false;
@@ -633,7 +635,6 @@ var Select = _react2['default'].createClass({
         focusedOption: selectedOption
       });
     }
-
     if (this.state.isFocused) {
       // On iOS, we can get into a state where we think the input is focused but it isn't really,
       // since iOS ignores programmatic calls to input.focus() that weren't triggered by a click event.
@@ -1289,8 +1290,7 @@ var Select = _react2['default'].createClass({
                   onFocus: _this6.focusOption,
                   option: option,
                   isSelected: isSelected,
-                  ref: optionRef
-                },
+                  ref: optionRef },
                 renderLabel(option)
               );
             })
@@ -1375,7 +1375,6 @@ var Select = _react2['default'].createClass({
   },
 
   render: function render() {
-
     var valueArray = this.getValueArray(this.props.value);
     var options = this._visibleOptions = this.filterOptions(this.props.multi ? valueArray : null);
 
