@@ -95,6 +95,7 @@ const Select = React.createClass({
     style: React.PropTypes.object,              // optional style to apply to the control
     tabIndex: React.PropTypes.string,           // optional tab index of the control
     tabSelectsValue: React.PropTypes.bool,      // whether to treat tabbing out while focused to be value selection
+    topOffset: React.PropTypes.number,           // top offset when going to the selected option.
     value: React.PropTypes.any,                 // initial field value
     valueComponent: React.PropTypes.func,       // value component to render
     valueKey: React.PropTypes.string,           // path of the label value in option objects
@@ -146,6 +147,7 @@ const Select = React.createClass({
       showArrow: false,
       simpleValue: false,
       tabSelectsValue: true,
+      topOffset: 10,
       valueComponent: Value,
       valueKey: 'value',
     };
@@ -201,7 +203,7 @@ const Select = React.createClass({
     if (this.refs.menu && this.refs.focused && this.state.isOpen && !this.hasScrolledToOption) {
       let focusedOptionNode = ReactDOM.findDOMNode(this.refs.focused);
       let menuNode = ReactDOM.findDOMNode(this.refs.menu);
-      menuNode.scrollTop = focusedOptionNode.offsetTop;
+      menuNode.scrollTop = focusedOptionNode.offsetTop - this.props.topOffset;
       this.hasScrolledToOption = true;
     } else if (!this.state.isOpen) {
       this.hasScrolledToOption = false;
@@ -299,7 +301,6 @@ const Select = React.createClass({
         focusedOption: selectedOption
       });
     }
-
     if (this.state.isFocused) {
       // On iOS, we can get into a state where we think the input is focused but it isn't really,
       // since iOS ignores programmatic calls to input.focus() that weren't triggered by a click event.
@@ -737,16 +738,16 @@ const Select = React.createClass({
     } else if (!this.state.inputValue) {
       if (isOpen) onClick = null;
       return (
-          <ValueComponent
-            id={this._instancePrefix + '-value-item'}
-            disabled={this.props.disabled}
-            instancePrefix={this._instancePrefix}
-            onClick={onClick}
-            onMouseDown={this.handleMouseDown}
-            value={valueArray[0]}>
-            {renderLabel(valueArray[0])}
-            {this.renderArrow()}
-          </ValueComponent>
+        <ValueComponent
+          id={this._instancePrefix + '-value-item'}
+          disabled={this.props.disabled}
+          instancePrefix={this._instancePrefix}
+          onClick={onClick}
+          onMouseDown={this.handleMouseDown}
+          value={valueArray[0]}>
+          {renderLabel(valueArray[0])}
+          {this.renderArrow()}
+        </ValueComponent>
       );
     }
   },
@@ -918,8 +919,7 @@ const Select = React.createClass({
               onFocus={this.focusOption}
               option={option}
               isSelected={isSelected}
-              ref={optionRef}
-            >
+              ref={optionRef}>
               {renderLabel(option)}
             </Option>
           );
@@ -997,9 +997,9 @@ const Select = React.createClass({
   },
 
   render () {
-
     let valueArray = this.getValueArray(this.props.value);
     let options = this._visibleOptions = this.filterOptions(this.props.multi ? valueArray : null);
+
 
     let isOpen = this.state.isOpen;
     let constantOpen = this.props.constantOpen
@@ -1050,10 +1050,10 @@ const Select = React.createClass({
              onTouchEnd={this.handleTouchEnd}
              onTouchStart={this.handleTouchStart}
              onTouchMove={this.handleTouchMove}>
-                    <span className="Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
-                        {this.renderValue(valueArray, isOpen)}
-                      {this.renderInput(valueArray, focusedOptionIndex)}
-                    </span>
+          <span className="Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
+              {this.renderValue(valueArray, isOpen)}
+            {this.renderInput(valueArray, focusedOptionIndex)}
+          </span>
           {removeMessage}
           {this.renderLoading()}
           {this.renderClear()}
