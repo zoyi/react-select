@@ -836,6 +836,26 @@ var Select = _react2['default'].createClass({
     }
   },
 
+  preventWheelEvent: function preventWheelEvent(event) {
+    // Disable wheel event when the pointer is on the padding area of select-menu-outer.
+    if (event.target == this.refs.menuContainer) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    var node = this.refs.menu;
+    var deltaY = event.deltaY;
+    var scrollTop = node.scrollTop;
+    var scrollHeight = node.scrollHeight;
+    var offsetHeight = node.offsetHeight;
+
+    var scrollIsTop = deltaY <= 0 && scrollTop === 0;
+    var scrollIsBottom = deltaY >= 0 && scrollTop === scrollHeight - offsetHeight;
+    if (scrollIsTop || scrollIsBottom) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  },
+
   handleRequired: function handleRequired(value, multi) {
     if (!value) return true;
     return multi ? value.length === 0 : Object.keys(value).length === 0;
@@ -1360,14 +1380,18 @@ var Select = _react2['default'].createClass({
       return null;
     }
 
+    // onScroll={this.handleMenuScroll}
     return _react2['default'].createElement(
       'div',
-      { ref: 'menuContainer', className: (0, _classnames2['default'])("Select-menu-outer", this.props.outerClassName), style: this.props.menuContainerStyle },
+      { ref: 'menuContainer',
+        className: (0, _classnames2['default'])("Select-menu-outer", this.props.outerClassName),
+        style: this.props.menuContainerStyle,
+        onWheel: this.preventWheelEvent },
       _react2['default'].createElement(
         'div',
         { ref: 'menu', role: 'listbox', className: 'Select-menu', id: this._instancePrefix + '-list',
           style: this.props.menuStyle,
-          onScroll: this.handleMenuScroll,
+          onWheel: this.preventWheelEvent,
           onMouseDown: this.handleMouseDownOnMenu },
         menu
       )
@@ -1411,6 +1435,7 @@ var Select = _react2['default'].createClass({
         this.props.backspaceToRemoveMessage.replace('{label}', valueArray[valueArray.length - 1][this.props.labelKey])
       );
     }
+
     return _react2['default'].createElement(
       'div',
       { ref: 'wrapper',

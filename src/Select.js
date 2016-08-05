@@ -491,6 +491,26 @@ const Select = React.createClass({
     }
   },
 
+  preventWheelEvent (event) {
+    // Disable wheel event when the pointer is on the padding area of select-menu-outer.
+    if(event.target == this.refs.menuContainer) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    const node = this.refs.menu
+    const deltaY = event.deltaY
+    const scrollTop = node.scrollTop
+    const scrollHeight = node.scrollHeight
+    const offsetHeight = node.offsetHeight
+
+    const scrollIsTop = (deltaY <= 0 && scrollTop === 0)
+    const scrollIsBottom = (deltaY >= 0 && scrollTop === scrollHeight - offsetHeight)
+    if ((scrollIsTop || scrollIsBottom ) ) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+  },
+
   handleRequired (value, multi) {
     if (!value) return true;
     return (multi ? value.length === 0 : Object.keys(value).length === 0);
@@ -984,11 +1004,15 @@ const Select = React.createClass({
       return null;
     }
 
+    // onScroll={this.handleMenuScroll}
     return (
-      <div ref="menuContainer" className={classNames("Select-menu-outer", this.props.outerClassName)} style={this.props.menuContainerStyle}>
+      <div ref="menuContainer"
+           className={classNames("Select-menu-outer", this.props.outerClassName)}
+           style={this.props.menuContainerStyle}
+            onWheel={this.preventWheelEvent}>
         <div ref="menu" role="listbox" className="Select-menu" id={this._instancePrefix + '-list'}
              style={this.props.menuStyle}
-             onScroll={this.handleMenuScroll}
+             onWheel={this.preventWheelEvent}
              onMouseDown={this.handleMouseDownOnMenu}>
           {menu}
         </div>
@@ -999,7 +1023,6 @@ const Select = React.createClass({
   render () {
     let valueArray = this.getValueArray(this.props.value);
     let options = this._visibleOptions = this.filterOptions(this.props.multi ? valueArray : null);
-
 
     let isOpen = this.state.isOpen;
     let constantOpen = this.props.constantOpen
@@ -1037,6 +1060,7 @@ const Select = React.createClass({
                 </span>
       );
     }
+
     return (
       <div ref="wrapper"
            className={className}
