@@ -837,23 +837,17 @@ var Select = _react2['default'].createClass({
   },
 
   preventWheelEvent: function preventWheelEvent(event) {
-    // Disable wheel event when the pointer is on the padding area of select-menu-outer.
-    if (event.target == this.refs.menuContainer) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    var node = this.refs.menu;
-    var deltaY = event.deltaY;
-    var scrollTop = node.scrollTop;
-    var scrollHeight = node.scrollHeight;
-    var offsetHeight = node.offsetHeight;
+    event.preventDefault();
+    event.stopPropagation();
 
-    var scrollIsTop = deltaY <= 0 && scrollTop === 0;
-    var scrollIsBottom = deltaY >= 0 && scrollTop === scrollHeight - offsetHeight;
-    if (scrollIsTop || scrollIsBottom) {
+    // Disable wheel event when the pointer is on the padding area of select-menu-outer.
+    if (event.target != this.refs.menuContainer) {
       event.preventDefault();
       event.stopPropagation();
     }
+
+    var node = this.refs.menu;
+    node.scrollTop += event.deltaY;
   },
 
   handleRequired: function handleRequired(value, multi) {
