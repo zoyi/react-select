@@ -849,9 +849,9 @@ const Select = React.createClass({
 
   renderArrow () {
     return (
-      <span className={classNames('Select-arrow-zone', {'arrow-hide': !this.props.showArrow})} onMouseDown={this.handleMouseDown}>
+      <div className={classNames('Select-arrow-zone', {'arrow-hide': !this.props.showArrow})} onMouseDown={this.handleMouseDown}>
         <span className="Select-arrow" onMouseDown={this.handleMouseDown}/>
-      </span>
+      </div>
     );
   },
 
@@ -1068,10 +1068,10 @@ const Select = React.createClass({
              onTouchEnd={this.handleTouchEnd}
              onTouchStart={this.handleTouchStart}
              onTouchMove={this.handleTouchMove}>
-          <span className="Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
-              {this.renderValue(valueArray, isOpen)}
-            {this.renderInput(valueArray, focusedOptionIndex)}
-          </span>
+        <span className="Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
+            {this.renderValue(valueArray, isOpen)}
+          {this.renderInput(valueArray, focusedOptionIndex)}
+        </span>
           {removeMessage}
           {this.renderLoading()}
           {this.renderClear()}
