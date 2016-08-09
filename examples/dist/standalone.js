@@ -1217,7 +1217,7 @@ var Select = _react2['default'].createClass({
 
   renderArrow: function renderArrow() {
     return _react2['default'].createElement(
-      'span',
+      'div',
       { className: (0, _classnames2['default'])('Select-arrow-zone', { 'arrow-hide': !this.props.showArrow }), onMouseDown: this.handleMouseDown },
       _react2['default'].createElement('span', { className: 'Select-arrow', onMouseDown: this.handleMouseDown })
     );
