@@ -50,8 +50,7 @@ const Select = React.createClass({
     escapeClearsValue: React.PropTypes.bool,    // whether escape clears the value when the menu is closed
     filterOption: React.PropTypes.func,         // method to filter a single option (option, filterString)
     filterOptions: React.PropTypes.any,         // boolean to enable default filtering or function to filter the options array ([options], filterString, [values])
-    handleMouseEnter: React.PropTypes.func,     // onMouseEnter handler in select-outer-menu component.
-    handleMouseLeave: React.PropTypes.func,    // onMouseLeave handler in select-outer-menu component.
+    freeWheelMutex: React.PropTypes.func,       // onMouseLeave handler in select-outer-menu component.
     ignoreAccents: React.PropTypes.bool,        // whether to strip diacritics when filtering
     ignoreCase: React.PropTypes.bool,           // whether to perform case-insensitive filtering
     inputClassName: React.PropTypes.string,     // optional style to apply to the input container
@@ -92,6 +91,7 @@ const Select = React.createClass({
     resetValue: React.PropTypes.any,            // value to use when you clear the control
     scrollMenuIntoView: React.PropTypes.bool,   // boolean to enable the viewport to shift so that the full menu fully visible when engaged
     searchable: React.PropTypes.bool,           // whether to enable searching feature or not
+    seizeWheelMutex: React.PropTypes.func,      // onMouseEnter handler in select-outer-menu component.
     showArrow: React.PropTypes.bool,            // whether to show an arrow or not
     simpleValue: React.PropTypes.bool,          // pass the value to onChange as a simple value (legacy pre 1.0 mode), defaults to false
     style: React.PropTypes.object,              // optional style to apply to the control
@@ -123,8 +123,7 @@ const Select = React.createClass({
       disabled: false,
       escapeClearsValue: true,
       filterOptions: true,
-      handleMouseEnter: () => {},
-      handleMouseLeave: () => {},
+      freeWheelMutex: () => {},
       ignoreAccents: true,
       ignoreCase: true,
       inputClassName: '',
@@ -148,6 +147,7 @@ const Select = React.createClass({
       resetValue: null,
       scrollMenuIntoView: true,
       searchable: false,
+      seizeWheelMutex: () => {},
       showArrow: false,
       simpleValue: false,
       tabSelectsValue: true,
@@ -1007,8 +1007,8 @@ const Select = React.createClass({
       <div ref="menuContainer"
            className={classNames("Select-menu-outer", this.props.outerClassName)}
            style={this.props.menuContainerStyle}
-           onMouseEnter={this.props.handleMouseEnter}
-           onMouseLeave={this.props.handleMouseLeave}
+           onMouseEnter={this.props.seizeWheelMutex}
+           onMouseLeave={this.props.freeWheelMutex}
            onWheel={this.preventWheelEvent}>
         <div ref="menu" role="listbox" className="Select-menu" id={this._instancePrefix + '-list'}
              style={this.props.menuStyle}
