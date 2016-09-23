@@ -922,9 +922,12 @@ const Select = React.createClass({
             'Select-option': true,
             'is-selected': isSelected,
             'is-focused': isFocused,
-            'is-disabled': option.disabled,
+            'is-disabled': option.disabled
           });
 
+          let styles = isSelected ? this.props.selectedOptionStyle : null
+          styles = isFocused ? this.props.focusedOptionStyle : styles
+          
           return (
             <Option
               instancePrefix={this._instancePrefix}
@@ -937,7 +940,8 @@ const Select = React.createClass({
               onFocus={this.focusOption}
               option={option}
               isSelected={isSelected}
-              ref={optionRef}>
+              ref={optionRef}
+              styles={styles}>
               {renderLabel(option)}
             </Option>
           );
@@ -1001,7 +1005,7 @@ const Select = React.createClass({
     if (!menu) {
       return null;
     }
-
+    
     // onScroll={this.handleMenuScroll}
     return (
       <div ref="menuContainer"

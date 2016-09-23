@@ -77,7 +77,7 @@ const Option = React.createClass({
 			</div>
 		) : (
 			<div className={className}
-				style={option.style}
+				style={this.props.styles}
 				role="option"
 			 	onMouseDown={this.handleMouseDown}
 				onMouseEnter={this.handleMouseEnter}
