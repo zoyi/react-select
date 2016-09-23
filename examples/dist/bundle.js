@@ -277,7 +277,7 @@ var Option = _react2['default'].createClass({
 		) : _react2['default'].createElement(
 			'div',
 			{ className: className,
-				style: option.style,
+				style: this.props.styles,
 				role: 'option',
 				onMouseDown: this.handleMouseDown,
 				onMouseEnter: this.handleMouseEnter,
@@ -1413,6 +1413,9 @@ var Select = _react2['default'].createClass({
                 'is-disabled': option.disabled
               });
 
+              var styles = isSelected ? _this6.props.selectedOptionStyle : null;
+              styles = isFocused ? _this6.props.focusedOptionStyle : styles;
+
               return _react2['default'].createElement(
                 Option,
                 {
@@ -1426,7 +1429,8 @@ var Select = _react2['default'].createClass({
                   onFocus: _this6.focusOption,
                   option: option,
                   isSelected: isSelected,
-                  ref: optionRef },
+                  ref: optionRef,
+                  styles: styles },
                 renderLabel(option)
               );
             })
