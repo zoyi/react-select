@@ -569,23 +569,27 @@ const Select = React.createClass({
   },
 
   selectValue (value) {
-    //NOTE: update value in the callback to make sure the input value is empty so that there are no sttyling issues (Chrome had issue otherwise)
-    this.hasScrolledToOption = false;
-    if (this.props.multi) {
-      this.setState({
-        inputValue: '',
-        focusedIndex: null
-      }, () => {
-        this.addValue(value);
-      });
+    if (value.type === 'header' || value.type === 'divider') {
+      return null
     } else {
-      this.setState({
-        isOpen: false,
-        inputValue: '',
-        isPseudoFocused: this.state.isFocused
-      }, () => {
-        this.setValue(value);
-      });
+      //NOTE: update value in the callback to make sure the input value is empty so that there are no sttyling issues (Chrome had issue otherwise)
+      this.hasScrolledToOption = false;
+      if (this.props.multi) {
+        this.setState({
+          inputValue: '',
+          focusedIndex: null
+        }, () => {
+          this.addValue(value);
+        });
+      } else {
+        this.setState({
+          isOpen: false,
+          inputValue: '',
+          isPseudoFocused: this.state.isFocused
+        }, () => {
+          this.setValue(value);
+        });
+      }
     }
   },
 
@@ -920,6 +924,8 @@ const Select = React.createClass({
           let optionRef = isFocused ? 'focused' : null;
           let optionClass = classNames(this.props.optionClassName, {
             'Select-option': true,
+            'Select-option-header': option.type && option.type === 'header',
+            'Select-option-divider': option.type && option.type === 'divider',
             'is-selected': isSelected,
             'is-focused': isFocused,
             'is-disabled': option.disabled
