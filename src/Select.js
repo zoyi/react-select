@@ -919,6 +919,7 @@ const Select = React.createClass({
         let renderLabel = this.props.optionRenderer || this.getOptionLabel;
 
         return options.map((option, i) => {
+          let isNotOptionElement = option.type && option.type !== ''
           let isSelected = valueArray && valueArray.indexOf(option) > -1;
           let isFocused = option === focusedOption;
           let optionRef = isFocused ? 'focused' : null;
@@ -926,8 +927,8 @@ const Select = React.createClass({
             'Select-option': true,
             'Select-option-header': option.type && option.type === 'header',
             'Select-option-divider': option.type && option.type === 'divider',
-            'is-selected': isSelected,
-            'is-focused': isFocused,
+            'is-selected': isNotOptionElement ? false : isSelected,
+            'is-focused': isNotOptionElement ? false : isFocused,
             'is-disabled': option.disabled
           });
 
