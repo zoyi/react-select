@@ -1291,6 +1291,7 @@ var Select = _react2['default'].createClass({
 
           return {
             v: options.map(function (option, i) {
+              var isNotOptionElement = option.type && option.type !== '';
               var isSelected = valueArray && valueArray.indexOf(option) > -1;
               var isFocused = option === focusedOption;
               var optionRef = isFocused ? 'focused' : null;
@@ -1298,8 +1299,8 @@ var Select = _react2['default'].createClass({
                 'Select-option': true,
                 'Select-option-header': option.type && option.type === 'header',
                 'Select-option-divider': option.type && option.type === 'divider',
-                'is-selected': isSelected,
-                'is-focused': isFocused,
+                'is-selected': isNotOptionElement ? false : isSelected,
+                'is-focused': isNotOptionElement ? false : isFocused,
                 'is-disabled': option.disabled
               });
 
