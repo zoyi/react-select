@@ -923,8 +923,9 @@ const Select = React.createClass({
           let isSelected = valueArray && valueArray.indexOf(option) > -1;
           let isFocused = option === focusedOption;
           let optionRef = isFocused ? 'focused' : null;
-          let optionClass = classNames(this.props.optionClassName, {
-            'Select-option': true,
+          let optionClass = classNames({
+						[this.props.optionClassName]: !option.type,
+            'Select-option': !option.type,
             'Select-option-header': option.type && option.type === 'header',
             'Select-option-divider': option.type && option.type === 'divider',
             'is-selected': isNotOptionElement ? false : isSelected,
@@ -934,7 +935,7 @@ const Select = React.createClass({
 
           let styles = isSelected ? this.props.selectedOptionStyle : null
           styles = isFocused ? this.props.focusedOptionStyle : styles
-          
+
           return (
             <Option
               instancePrefix={this._instancePrefix}
@@ -1012,7 +1013,7 @@ const Select = React.createClass({
     if (!menu) {
       return null;
     }
-    
+
     // onScroll={this.handleMenuScroll}
     return (
       <div ref="menuContainer"

@@ -1409,18 +1409,13 @@ var Select = _react2['default'].createClass({
 
           return {
             v: options.map(function (option, i) {
+              var _classNames2;
+
               var isNotOptionElement = option.type && option.type !== '';
               var isSelected = valueArray && valueArray.indexOf(option) > -1;
               var isFocused = option === focusedOption;
               var optionRef = isFocused ? 'focused' : null;
-              var optionClass = (0, _classnames2['default'])(_this6.props.optionClassName, {
-                'Select-option': true,
-                'Select-option-header': option.type && option.type === 'header',
-                'Select-option-divider': option.type && option.type === 'divider',
-                'is-selected': isNotOptionElement ? false : isSelected,
-                'is-focused': isNotOptionElement ? false : isFocused,
-                'is-disabled': option.disabled
-              });
+              var optionClass = (0, _classnames2['default'])((_classNames2 = {}, _defineProperty(_classNames2, _this6.props.optionClassName, !option.type), _defineProperty(_classNames2, 'Select-option', !option.type), _defineProperty(_classNames2, 'Select-option-header', option.type && option.type === 'header'), _defineProperty(_classNames2, 'Select-option-divider', option.type && option.type === 'divider'), _defineProperty(_classNames2, 'is-selected', isNotOptionElement ? false : isSelected), _defineProperty(_classNames2, 'is-focused', isNotOptionElement ? false : isFocused), _defineProperty(_classNames2, 'is-disabled', option.disabled), _classNames2));
 
               var styles = isSelected ? _this6.props.selectedOptionStyle : null;
               styles = isFocused ? _this6.props.focusedOptionStyle : styles;
