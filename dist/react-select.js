@@ -362,7 +362,7 @@ var instanceId = 1;
 
 var Select = _react2['default'].createClass({
 
-  displayName: 'Select',
+  displayName: 'Channel-Select',
 
   propTypes: {
     addLabelText: _react2['default'].PropTypes.string, // placeholder displayed when you want to add a label on a multi-value input
@@ -846,7 +846,7 @@ var Select = _react2['default'].createClass({
     event.preventDefault();
     event.stopPropagation();
 
-    // Disable wheel event when the pointer is on the padding area of select-menu-outer.
+    // Disable wheel event when the pointer is on the padding area of Channel-Select-menu-outer.
     if (event.target != this.refs.menuContainer) {
       event.preventDefault();
       event.stopPropagation();
@@ -1093,8 +1093,8 @@ var Select = _react2['default'].createClass({
     if (!this.props.isLoading) return;
     return _react2['default'].createElement(
       'span',
-      { className: 'Select-loading-zone', 'aria-hidden': 'true' },
-      _react2['default'].createElement('span', { className: 'Select-loading' })
+      { className: 'Channel-Select-loading-zone', 'aria-hidden': 'true' },
+      _react2['default'].createElement('span', { className: 'Channel-Select-loading' })
     );
   },
 
@@ -1106,7 +1106,7 @@ var Select = _react2['default'].createClass({
     if (!valueArray.length) {
       return !this.state.inputValue ? _react2['default'].createElement(
         'div',
-        { className: 'Select-placeholder' },
+        { className: 'Channel-Select-placeholder' },
         this.props.placeholder
       ) : null;
     }
@@ -1127,7 +1127,7 @@ var Select = _react2['default'].createClass({
           _this4.renderArrow(),
           _react2['default'].createElement(
             'span',
-            { className: 'Select-aria-only' },
+            { className: 'Channel-Select-aria-only' },
             ' '
           )
         );
@@ -1155,7 +1155,7 @@ var Select = _react2['default'].createClass({
     } else {
       var _classNames;
 
-      var className = (0, _classnames2['default'])('Select-input', this.props.inputClassName);
+      var className = (0, _classnames2['default'])('Channel-Select-input', this.props.inputClassName);
       var isOpen = !!this.state.isOpen;
 
       var ariaOwns = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, this._instancePrefix + '-list', isOpen), _defineProperty(_classNames, this._instancePrefix + '-backspace-remove-message', this.props.multi && !this.props.disabled && this.state.isFocused && !this.state.inputValue), _classNames));
@@ -1214,22 +1214,22 @@ var Select = _react2['default'].createClass({
     if (!this.props.clearable || !this.props.value || this.props.multi && !this.props.value.length || this.props.disabled || this.props.isLoading) return;
     return _react2['default'].createElement(
       'span',
-      { className: 'Select-clear-zone', title: this.props.multi ? this.props.clearAllText : this.props.clearValueText,
+      { className: 'Channel-Select-clear-zone', title: this.props.multi ? this.props.clearAllText : this.props.clearValueText,
         'aria-label': this.props.multi ? this.props.clearAllText : this.props.clearValueText,
         onMouseDown: this.clearValue,
         onTouchStart: this.handleTouchStart,
         onTouchMove: this.handleTouchMove,
         onTouchEnd: this.handleTouchEndClearValue
       },
-      _react2['default'].createElement('span', { className: 'Select-clear', dangerouslySetInnerHTML: { __html: '&times;' } })
+      _react2['default'].createElement('span', { className: 'Channel-Select-clear', dangerouslySetInnerHTML: { __html: '&times;' } })
     );
   },
 
   renderArrow: function renderArrow() {
     return _react2['default'].createElement(
       'div',
-      { className: (0, _classnames2['default'])('Select-arrow-zone', { 'arrow-hide': !this.props.showArrow }), onMouseDown: this.handleMouseDown },
-      _react2['default'].createElement('span', { className: 'Select-arrow', onMouseDown: this.handleMouseDown })
+      { className: (0, _classnames2['default'])('Channel-Select-arrow-zone', { 'Channel-arrow-hide': !this.props.showArrow }), onMouseDown: this.handleMouseDown },
+      _react2['default'].createElement('span', { className: 'Channel-Select-arrow', onMouseDown: this.handleMouseDown })
     );
   },
 
@@ -1297,7 +1297,7 @@ var Select = _react2['default'].createClass({
               var isSelected = valueArray && valueArray.indexOf(option) > -1;
               var isFocused = option === focusedOption;
               var optionRef = isFocused ? 'focused' : null;
-              var optionClass = (0, _classnames2['default'])((_classNames2 = {}, _defineProperty(_classNames2, _this6.props.optionClassName, !option.type), _defineProperty(_classNames2, 'Select-option', !option.type), _defineProperty(_classNames2, 'Select-option-header', option.type && option.type === 'header'), _defineProperty(_classNames2, 'Select-option-divider', option.type && option.type === 'divider'), _defineProperty(_classNames2, 'is-selected', isNotOptionElement ? false : isSelected), _defineProperty(_classNames2, 'is-focused', isNotOptionElement ? false : isFocused), _defineProperty(_classNames2, 'is-disabled', option.disabled), _classNames2));
+              var optionClass = (0, _classnames2['default'])((_classNames2 = {}, _defineProperty(_classNames2, _this6.props.optionClassName, !option.type), _defineProperty(_classNames2, 'Channel-Select-option', !option.type), _defineProperty(_classNames2, 'Channel-Select-option-header', option.type && option.type === 'header'), _defineProperty(_classNames2, 'Channel-Select-option-divider', option.type && option.type === 'divider'), _defineProperty(_classNames2, 'Channel-is-selected', isNotOptionElement ? false : isSelected), _defineProperty(_classNames2, 'Channel-is-focused', isNotOptionElement ? false : isFocused), _defineProperty(_classNames2, 'Channel-is-disabled', option.disabled), _classNames2));
 
               var styles = isSelected ? _this6.props.selectedOptionStyle : null;
               styles = isFocused ? _this6.props.focusedOptionStyle : styles;
@@ -1328,7 +1328,7 @@ var Select = _react2['default'].createClass({
     } else if (this.props.noResultsText) {
       return _react2['default'].createElement(
         'div',
-        { className: 'Select-noresults' },
+        { className: 'Channel-Select-noresults' },
         this.props.noResultsText
       );
     } else {
@@ -1390,14 +1390,14 @@ var Select = _react2['default'].createClass({
     return _react2['default'].createElement(
       'div',
       { ref: 'menuContainer',
-        className: (0, _classnames2['default'])("Select-menu-outer", this.props.outerClassName),
+        className: (0, _classnames2['default'])("Channel-Select-menu-outer", this.props.outerClassName),
         style: this.props.menuContainerStyle,
         onMouseEnter: this.props.seizeWheelMutex,
         onMouseLeave: this.props.freeWheelMutex,
         onWheel: this.preventWheelEvent },
       _react2['default'].createElement(
         'div',
-        { ref: 'menu', role: 'listbox', className: 'Select-menu', id: this._instancePrefix + '-list',
+        { ref: 'menu', role: 'listbox', className: 'Channel-Select-menu', id: this._instancePrefix + '-list',
           style: this.props.menuStyle,
           onWheel: this.preventWheelEvent,
           onMouseDown: this.handleMouseDownOnMenu },
@@ -1422,23 +1422,23 @@ var Select = _react2['default'].createClass({
     } else {
       focusedOption = this._focusedOption = null;
     }
-    var className = (0, _classnames2['default'])('Select', this.props.className, {
-      'Select--multi': this.props.multi,
-      'Select--single': !this.props.multi,
-      'is-disabled': this.props.disabled,
-      'is-focused': this.state.isFocused,
-      'is-loading': this.props.isLoading,
-      'is-open': isOpen,
-      'is-pseudo-focused': this.state.isPseudoFocused,
-      'is-searchable': this.props.searchable,
-      'has-value': valueArray.length
+    var className = (0, _classnames2['default'])('Channel-Select', this.props.className, {
+      'Channel-Select--multi': this.props.multi,
+      'Channel-Select--single': !this.props.multi,
+      'Channel-is-disabled': this.props.disabled,
+      'Channel-is-focused': this.state.isFocused,
+      'Channel-is-loading': this.props.isLoading,
+      'Channel-is-open': isOpen,
+      'Channel-is-pseudo-focused': this.state.isPseudoFocused,
+      'Channel-is-searchable': this.props.searchable,
+      'Channel-has-value': valueArray.length
     });
 
     var removeMessage = null;
     if (this.props.multi && !this.props.disabled && valueArray.length && !this.state.inputValue && this.state.isFocused && this.props.backspaceRemoves) {
       removeMessage = _react2['default'].createElement(
         'span',
-        { id: this._instancePrefix + '-backspace-remove-message', className: 'Select-aria-only',
+        { id: this._instancePrefix + '-backspace-remove-message', className: 'Channel-Select-aria-only',
           'aria-live': 'assertive' },
         this.props.backspaceToRemoveMessage.replace('{label}', valueArray[valueArray.length - 1][this.props.labelKey])
       );
@@ -1453,7 +1453,7 @@ var Select = _react2['default'].createClass({
       _react2['default'].createElement(
         'div',
         { ref: 'control',
-          className: (0, _classnames2['default'])('Select-control', this.props.controlClassName),
+          className: (0, _classnames2['default'])('Channel-Select-control', this.props.controlClassName),
           style: this.props.style,
           onKeyDown: this.handleKeyDown,
           onMouseDown: function () {
@@ -1464,7 +1464,7 @@ var Select = _react2['default'].createClass({
           onTouchMove: this.handleTouchMove },
         _react2['default'].createElement(
           'span',
-          { className: 'Select-multi-value-wrapper', id: this._instancePrefix + '-value' },
+          { className: 'Channel-Select-multi-value-wrapper', id: this._instancePrefix + '-value' },
           this.renderValue(valueArray, isOpen),
           this.renderInput(valueArray, focusedOptionIndex)
         ),
@@ -1555,7 +1555,7 @@ var Value = _react2['default'].createClass({
 		if (this.props.disabled || !this.props.onRemove) return;
 		return _react2['default'].createElement(
 			'span',
-			{ className: 'Select-value-icon',
+			{ className: 'Channel-Select-value-icon',
 				'aria-hidden': 'true',
 				onMouseDown: this.onRemove,
 				onTouchEnd: this.handleTouchEndRemove,
@@ -1566,7 +1566,7 @@ var Value = _react2['default'].createClass({
 	},
 
 	renderLabel: function renderLabel() {
-		var className = 'Select-value-label';
+		var className = 'Channel-Select-value-label';
 		return this.props.onClick || this.props.value.href ? _react2['default'].createElement(
 			'a',
 			{ className: className, href: this.props.value.href, target: this.props.value.target, onMouseDown: this.handleMouseDown, onTouchEnd: this.handleMouseDown },
@@ -1581,7 +1581,7 @@ var Value = _react2['default'].createClass({
 	render: function render() {
 		return _react2['default'].createElement(
 			'div',
-			{ className: (0, _classnames2['default'])('Select-value', this.props.value.className),
+			{ className: (0, _classnames2['default'])('Channel-Select-value', this.props.value.className),
 				style: this.props.value.style,
 				title: this.props.value.title
 			},
