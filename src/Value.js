@@ -59,7 +59,7 @@ const Value = React.createClass({
 	renderRemoveIcon () {
 		if (this.props.disabled || !this.props.onRemove) return;
 		return (
-			<span className="Select-value-icon"
+			<span className="Channel-Select-value-icon"
 				aria-hidden="true"
 				onMouseDown={this.onRemove}
 				onTouchEnd={this.handleTouchEndRemove}
@@ -71,7 +71,7 @@ const Value = React.createClass({
 	},
 
 	renderLabel () {
-		let className = 'Select-value-label';
+		let className = 'Channel-Select-value-label';
 		return this.props.onClick || this.props.value.href ? (
 			<a className={className} href={this.props.value.href} target={this.props.value.target} onMouseDown={this.handleMouseDown} onTouchEnd={this.handleMouseDown}>
 				{this.props.children}
@@ -85,7 +85,7 @@ const Value = React.createClass({
 
 	render () {
 		return (
-			<div className={classNames('Select-value', this.props.value.className)}
+			<div className={classNames('Channel-Select-value', this.props.value.className)}
 				style={this.props.value.style}
 				title={this.props.value.title}
 				>

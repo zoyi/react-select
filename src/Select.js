@@ -26,7 +26,7 @@ let instanceId = 1;
 
 const Select = React.createClass({
 
-  displayName: 'Select',
+  displayName: 'Channel-Select',
 
   propTypes: {
     addLabelText: React.PropTypes.string,       // placeholder displayed when you want to add a label on a multi-value input
@@ -499,7 +499,7 @@ const Select = React.createClass({
     event.preventDefault()
     event.stopPropagation()
 
-    // Disable wheel event when the pointer is on the padding area of select-menu-outer.
+    // Disable wheel event when the pointer is on the padding area of Channel-Select-menu-outer.
     if(event.target != this.refs.menuContainer) {
       event.preventDefault()
       event.stopPropagation()
@@ -727,8 +727,8 @@ const Select = React.createClass({
   renderLoading () {
     if (!this.props.isLoading) return;
     return (
-      <span className="Select-loading-zone" aria-hidden="true">
-                <span className="Select-loading"/>
+      <span className="Channel-Select-loading-zone" aria-hidden="true">
+                <span className="Channel-Select-loading"/>
             </span>
     );
   },
@@ -737,7 +737,7 @@ const Select = React.createClass({
     let renderLabel = this.props.valueRenderer || this.getOptionLabel;
     let ValueComponent = this.props.valueComponent;
     if (!valueArray.length) {
-      return !this.state.inputValue ? <div className="Select-placeholder">{this.props.placeholder}</div> : null;
+      return !this.state.inputValue ? <div className="Channel-Select-placeholder">{this.props.placeholder}</div> : null;
     }
     let onClick = this.props.onValueClick ? this.handleValueClick : null;
     if (this.props.multi) {
@@ -753,7 +753,7 @@ const Select = React.createClass({
             value={value}>
             {renderLabel(value)}
             {this.renderArrow()}
-            <span className="Select-aria-only">&nbsp;</span>
+            <span className="Channel-Select-aria-only">&nbsp;</span>
           </ValueComponent>
         );
       });
@@ -778,7 +778,7 @@ const Select = React.createClass({
     if (this.props.inputRenderer) {
       return this.props.inputRenderer();
     } else {
-      var className = classNames('Select-input', this.props.inputClassName)
+      var className = classNames('Channel-Select-input', this.props.inputClassName)
       const isOpen = !!this.state.isOpen;
 
       const ariaOwns = classNames({
@@ -843,22 +843,22 @@ const Select = React.createClass({
   renderClear () {
     if (!this.props.clearable || !this.props.value || (this.props.multi && !this.props.value.length) || this.props.disabled || this.props.isLoading) return;
     return (
-      <span className="Select-clear-zone" title={this.props.multi ? this.props.clearAllText : this.props.clearValueText}
+      <span className="Channel-Select-clear-zone" title={this.props.multi ? this.props.clearAllText : this.props.clearValueText}
             aria-label={this.props.multi ? this.props.clearAllText : this.props.clearValueText}
             onMouseDown={this.clearValue}
             onTouchStart={this.handleTouchStart}
             onTouchMove={this.handleTouchMove}
             onTouchEnd={this.handleTouchEndClearValue}
       >
-                <span className="Select-clear" dangerouslySetInnerHTML={{ __html: '&times;' }}/>
+                <span className="Channel-Select-clear" dangerouslySetInnerHTML={{ __html: '&times;' }}/>
             </span>
     );
   },
 
   renderArrow () {
     return (
-      <div className={classNames('Select-arrow-zone', {'arrow-hide': !this.props.showArrow})} onMouseDown={this.handleMouseDown}>
-        <span className="Select-arrow" onMouseDown={this.handleMouseDown}/>
+      <div className={classNames('Channel-Select-arrow-zone', {'Channel-arrow-hide': !this.props.showArrow})} onMouseDown={this.handleMouseDown}>
+        <span className="Channel-Select-arrow" onMouseDown={this.handleMouseDown}/>
       </div>
     );
   },
@@ -925,12 +925,12 @@ const Select = React.createClass({
           let optionRef = isFocused ? 'focused' : null;
           let optionClass = classNames({
 						[this.props.optionClassName]: !option.type,
-            'Select-option': !option.type,
-            'Select-option-header': option.type && option.type === 'header',
-            'Select-option-divider': option.type && option.type === 'divider',
-            'is-selected': isNotOptionElement ? false : isSelected,
-            'is-focused': isNotOptionElement ? false : isFocused,
-            'is-disabled': option.disabled
+            'Channel-Select-option': !option.type,
+            'Channel-Select-option-header': option.type && option.type === 'header',
+            'Channel-Select-option-divider': option.type && option.type === 'divider',
+            'Channel-is-selected': isNotOptionElement ? false : isSelected,
+            'Channel-is-focused': isNotOptionElement ? false : isFocused,
+            'Channel-is-disabled': option.disabled
           });
 
           let styles = isSelected ? this.props.selectedOptionStyle : null
@@ -957,7 +957,7 @@ const Select = React.createClass({
       }
     } else if (this.props.noResultsText) {
       return (
-        <div className="Select-noresults">
+        <div className="Channel-Select-noresults">
           {this.props.noResultsText}
         </div>
       );
@@ -1017,12 +1017,12 @@ const Select = React.createClass({
     // onScroll={this.handleMenuScroll}
     return (
       <div ref="menuContainer"
-           className={classNames("Select-menu-outer", this.props.outerClassName)}
+           className={classNames("Channel-Select-menu-outer", this.props.outerClassName)}
            style={this.props.menuContainerStyle}
            onMouseEnter={this.props.seizeWheelMutex}
            onMouseLeave={this.props.freeWheelMutex}
            onWheel={this.preventWheelEvent}>
-        <div ref="menu" role="listbox" className="Select-menu" id={this._instancePrefix + '-list'}
+        <div ref="menu" role="listbox" className="Channel-Select-menu" id={this._instancePrefix + '-list'}
              style={this.props.menuStyle}
              onWheel={this.preventWheelEvent}
              onMouseDown={this.handleMouseDownOnMenu}>
@@ -1048,16 +1048,16 @@ const Select = React.createClass({
     } else {
       focusedOption = this._focusedOption = null;
     }
-    let className = classNames('Select', this.props.className, {
-      'Select--multi': this.props.multi,
-      'Select--single': !this.props.multi,
-      'is-disabled': this.props.disabled,
-      'is-focused': this.state.isFocused,
-      'is-loading': this.props.isLoading,
-      'is-open': isOpen,
-      'is-pseudo-focused': this.state.isPseudoFocused,
-      'is-searchable': this.props.searchable,
-      'has-value': valueArray.length,
+    let className = classNames('Channel-Select', this.props.className, {
+      'Channel-Select--multi': this.props.multi,
+      'Channel-Select--single': !this.props.multi,
+      'Channel-is-disabled': this.props.disabled,
+      'Channel-is-focused': this.state.isFocused,
+      'Channel-is-loading': this.props.isLoading,
+      'Channel-is-open': isOpen,
+      'Channel-is-pseudo-focused': this.state.isPseudoFocused,
+      'Channel-is-searchable': this.props.searchable,
+      'Channel-has-value': valueArray.length,
     });
 
     let removeMessage = null;
@@ -1066,7 +1066,7 @@ const Select = React.createClass({
       this.state.isFocused &&
       this.props.backspaceRemoves) {
       removeMessage = (
-        <span id={this._instancePrefix + '-backspace-remove-message'} className="Select-aria-only"
+        <span id={this._instancePrefix + '-backspace-remove-message'} className="Channel-Select-aria-only"
               aria-live="assertive">
                     {this.props.backspaceToRemoveMessage.replace('{label}', valueArray[valueArray.length - 1][this.props.labelKey])}
                 </span>
@@ -1079,14 +1079,14 @@ const Select = React.createClass({
            style={this.props.wrapperStyle}>
         {this.renderHiddenField(valueArray)}
         <div ref="control"
-             className={classNames('Select-control', this.props.controlClassName)}
+             className={classNames('Channel-Select-control', this.props.controlClassName)}
              style={this.props.style}
              onKeyDown={this.handleKeyDown}
              onMouseDown={() => {'handleMouseDown disabled'}}
              onTouchEnd={this.handleTouchEnd}
              onTouchStart={this.handleTouchStart}
              onTouchMove={this.handleTouchMove}>
-        <span className="Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
+        <span className="Channel-Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
             {this.renderValue(valueArray, isOpen)}
           {this.renderInput(valueArray, focusedOptionIndex)}
         </span>
