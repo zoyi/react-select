@@ -1074,29 +1074,27 @@ const Select = React.createClass({
     }
 
     return (
-      <div className="Channel-Plugin">
-        <div ref="wrapper"
-             className={className}
-             style={this.props.wrapperStyle}>
-          {this.renderHiddenField(valueArray)}
-          <div ref="control"
-               className={classNames('Select-control', this.props.controlClassName)}
-               style={this.props.style}
-               onKeyDown={this.handleKeyDown}
-               onMouseDown={() => {'handleMouseDown disabled'}}
-               onTouchEnd={this.handleTouchEnd}
-               onTouchStart={this.handleTouchStart}
-               onTouchMove={this.handleTouchMove}>
-          <span className="Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
-              {this.renderValue(valueArray, isOpen)}
-            {this.renderInput(valueArray, focusedOptionIndex)}
-          </span>
-            {removeMessage}
-            {this.renderLoading()}
-            {this.renderClear()}
-          </div>
-          { (isOpen || constantOpen) ? this.renderOuter(options, !this.props.multi ? valueArray : null, focusedOption) : null}
+      <div ref="wrapper"
+           className={className}
+           style={this.props.wrapperStyle}>
+        {this.renderHiddenField(valueArray)}
+        <div ref="control"
+             className={classNames('Select-control', this.props.controlClassName)}
+             style={this.props.style}
+             onKeyDown={this.handleKeyDown}
+             onMouseDown={() => {'handleMouseDown disabled'}}
+             onTouchEnd={this.handleTouchEnd}
+             onTouchStart={this.handleTouchStart}
+             onTouchMove={this.handleTouchMove}>
+        <span className="Select-multi-value-wrapper" id={this._instancePrefix + '-value'}>
+            {this.renderValue(valueArray, isOpen)}
+          {this.renderInput(valueArray, focusedOptionIndex)}
+        </span>
+          {removeMessage}
+          {this.renderLoading()}
+          {this.renderClear()}
         </div>
+        { (isOpen || constantOpen) ? this.renderOuter(options, !this.props.multi ? valueArray : null, focusedOption) : null}
       </div>
     );
   }
